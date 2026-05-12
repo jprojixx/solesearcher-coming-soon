@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoleSearcher — Find Your Next Grail</title>
+  <meta name="description" content="The smartest way to discover and price your next sneaker. Coming soon to solesearcher.ai" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #08090c;
+      --surface: #111318;
+      --orange: #ff5c35;
+      --orange-glow: rgba(255,92,53,0.15);
+      --white: #f2f2f2;
+      --muted: #6b7280;
+      --border: rgba(255,255,255,0.08);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      text-align: center;
+    }
+    .glow-orb {
+      position: fixed; bottom: -20%; right: -10%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,92,53,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .glow-orb-2 {
+      position: fixed; top: -10%; left: -10%;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,92,53,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .container {
+      position: relative; z-index: 1;
+      max-width: 640px; width: 90%;
+      padding: 60px 20px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange-glow); border: 1px solid rgba(255,92,53,0.3);
+      border-radius: 100px; padding: 5px 16px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 28px;
+    }
+    .shoe-emoji { font-size: 56px; margin-bottom: 16px; display: block; }
+    h1 {
+      font-size: clamp(40px, 9vw, 76px);
+      font-weight: 900; letter-spacing: -0.04em;
+      line-height: 0.95; margin-bottom: 8px;
+    }
+    .highlight { color: var(--orange); }
+    .domain {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
+      color: var(--muted); margin-bottom: 28px; text-transform: lowercase;
+    }
+    .tagline {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: rgba(242,242,242,0.65); line-height: 1.6;
+      max-width: 460px; margin: 0 auto 40px;
+    }
+    .tagline strong { color: var(--white); }
+    .stats {
+      display: flex; gap: 0; justify-content: center;
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; margin-bottom: 40px;
+    }
+    .stat {
+      flex: 1; padding: 20px 12px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-number { font-size: 24px; font-weight: 800; color: var(--orange); margin-bottom: 4px; }
+    .stat-label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .form-row {
+      display: flex; gap: 10px; max-width: 440px; margin: 0 auto 14px;
+    }
+    input[type="email"] {
+      flex: 1; padding: 14px 16px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--white);
+      font-family: inherit; font-size: 15px; outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="email"]:focus { border-color: var(--orange); }
+    input[type="email"]::placeholder { color: var(--muted); }
+    button {
+      padding: 14px 22px; background: var(--orange);
+      border: none; border-radius: 10px;
+      color: var(--white); font-family: inherit;
+      font-size: 14px; font-weight: 700;
+      cursor: pointer; white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.85; }
+    .note { font-size: 12px; color: var(--muted); margin-bottom: 40px; }
+    .success { display: none; font-size: 13px; color: var(--orange); font-weight: 600; margin-bottom: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 40px; }
+    .tag {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 12px; color: var(--muted); font-weight: 500;
+    }
+    .footer { font-size: 11px; color: #333; }
+    @media(max-width:480px) {
+      .form-row { flex-direction: column; }
+      .stats { flex-direction: column; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-orb"></div>
+  <div class="glow-orb-2"></div>
+  <div class="container">
+    <div class="eyebrow">🔥 Coming Soon</div>
+    <span class="shoe-emoji">👟</span>
+    <h1>Sole<span class="highlight">Searcher</span></h1>
+    <div class="domain">solesearcher.ai</div>
+    <p class="tagline">
+      <strong>Find your next grail.</strong><br/>
+      The smartest sneaker discovery and price intelligence platform — every drop, every resale market, one place.
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="stat-number">500K+</div><div class="stat-label">Sneakers</div></div>
+      <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Marketplaces</div></div>
+      <div class="stat"><div class="stat-number">Real-Time</div><div class="stat-label">Pricing</div></div>
+    </div>
+    <form class="form-row" id="waitlist-form">
+      <input type="email" placeholder="your@email.com" required id="email-input" />
+      <button type="submit">Join the Hunt 🔥</button>
+    </form>
+    <p class="success" id="success-msg">✓ You're in. We'll drop the beta link first.</p>
+    <p class="note">No spam. Just the drop.</p>
+    <div class="tags">
+      <span class="tag">Nike</span><span class="tag">Jordan</span><span class="tag">Yeezy</span><span class="tag">New Balance</span><span class="tag">ASICS</span><span class="tag">Samba</span><span class="tag">Air Force 1</span><span class="tag">Dunk Low</span>
+    </div>
+    <p class="footer">© 2026 Projixx LLC · solesearcher.ai</p>
+  </div>
+  <script>
+    document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = document.getElementById('email-input').value;
+      fetch('https://formspree.io/f/mzzdgqkz', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email: email, source: 'solesearcher.ai'})
+      });
+      document.getElementById('email-input').value = '';
+      document.getElementById('success-msg').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
